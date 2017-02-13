@@ -64,8 +64,9 @@ View the [full example](samples/example.js) for more infos about data manipulati
 ```
 
 ## Related
-- [got](https://github.com/sindresorhus/got)
-- [chili-js](https://github.com/rawnly/chili-js)
+- [got](https://github.com/sindresorhus/got) - Simplified HTTP requests
+
+- [chili-js](https://github.com/rawnly/chili-js) - Useful NodeJs variables and functions
 
 [registry]: https://registry.npmjs.org
 
