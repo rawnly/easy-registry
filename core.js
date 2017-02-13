@@ -1,6 +1,5 @@
 'use strict'
 
-require('colors');
 require('chili-js');
 const date = require('./libs/date');
 const got = require('got');

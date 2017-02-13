@@ -3,7 +3,6 @@ require('chili-js'); // -> https://github.com/rawnly/chili-js
 const reg = require('easy-registry');
 
 
-
 // Initialize
 reg.init('easy-registry')
 
