@@ -1,6 +1,6 @@
 {
   "name": "easy-registry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "core.js",
   "repository": "https://github.com/rawnly/easy-registry",
   "author": "Rawnly <fedevitale99@gmail.com>",
