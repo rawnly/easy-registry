@@ -1,7 +1,8 @@
 # Easy Registry
 
 <p align="center"> <img src="https://cloud.githubusercontent.com/assets/16429579/22896657/3f5b2b66-f221-11e6-8702-3c51f80896f5.png" alt="wall"></p>
->  Easy tool for [NPM Registry][registry]
+
+> Easy tool for [NPM Registry][registry]
 
 This module provides to give you information about a **npm** module.
 
