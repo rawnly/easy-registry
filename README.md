@@ -5,51 +5,7 @@
 
 This module provides to give you information about a **npm** module.
 
-```js
-const registry = require('easy-registry')
-
-// Module Name
-registry.init('splash-cli')
-
-// Get downloads in the last day
-registry.day((err, data) => {
-  if (!err) {
-    console.log(data)
-  }
-})
-
-// Get downloads in the last week
-registry.week((err, data) => {
-  if (!err) {
-    console.log(data)
-  }
-})
-
-// Get downloads in the last month
-registry.month((err, data) => {
-  if (!err) {
-    console.log(data)
-  }
-})
-
-// Get download in the last year
-registry.year((err, data) => {
-  if (!err) {
-    console.log(data)
-  }
-})
-
-
-// Get total downloads
-//(from 1 Jan 1000  to current day)
-registry.absolute((err, data) => {
-  if (!err) {
-    console.log(data)
-  }
-})
-```
-
-View the [full example](samples/example.js) for more infos about data manipulation.
+You can grab downloads and `date` informations. You can also use [this module](https://github.com/jstrace/chart) to create beautiful chars.
 
 
 ## Install
@@ -63,12 +19,83 @@ View the [full example](samples/example.js) for more infos about data manipulati
   $ yarn add easy-registry
 ```
 
-## Related
-- [got](https://github.com/sindresorhus/got) - Simplified HTTP requests
+## Usage
+```js
+// Modules
+const chart = require('chart');
+const chili = require('chili-js');
+const Package = require('easy-registry')
 
+// Variables
+const myModule = new Package('myModule')
+
+// The magic happens
+myModule.day((err, infos) => {
+  let downloads = infos.map(info => {
+    return info.downloads
+  });
+
+  downloads.sort((a, b) => {
+    return a - b
+  });
+
+  const ch = chart(downloads, {
+    width: 70,
+    height: 30
+  });
+
+  console.log(ch);
+});
+```
+> With Callback
+
+<br>
+<br>
+<br>
+
+```javascript
+// Modules
+const chart = require('chart');
+const chili = require('chili-js');
+const Package = require('easy-registry')
+
+// Variables
+const myModule = new Package('myModule')
+
+// The magic happens
+myModule.day().then(infos => {
+  const downloads = infos.map(info => {
+    return info.downloads
+  });
+
+  // .sum() is a `chili-js` function!
+  console.log(`Total: ${downloads.sum()}`);
+
+}).catch(err => {
+  throw new Error(err)
+})
+```
+> With Promises
+
+View the [full example](samples/example.js) for more informations about `data manipulation`.
+
+<br>
+
+## API
+1. `.day(callback)`   - Get datas about the last day.
+2. `.week(callback)`  - Get datas about the last week.
+3. `.month(callback)` - Get datas about the last month.
+4. `.year(callback)`  - Get datas about the last year.
+5. `.total(callback)` - Get datas from `1 Jan 1000` to the `current day`.
+
+## Modules in the examples
 - [chili-js](https://github.com/rawnly/chili-js) - Useful NodeJs variables and functions
+- [jstrace/chart](https://github.com/jstrace/chart) - Ansi charts for nodejs
+
+
+
+---
+> Made with :heart: by [@Rawnly](https://github.com/rawnly)
+
 
 [registry]: https://registry.npmjs.org
-
-
-<h3 align="center"> Written in love by @Rawnly </h3>

@@ -1,18 +1,30 @@
-require('chili-js'); // -> https://github.com/rawnly/chili-js
+const chili = require('chili-js');
 
-const reg = require('easy-registry');
+const Package = require('../index.js');
+const reg = new Package('easy-registry')
 
+// With Promises
+reg.total().then((data) => {
+  let downloads = data.downloads.map(dw => {
+    return dw.downloads
+  })
 
-// Initialize
-reg.init('easy-registry')
+  console.log(`Total Downloads: ${downloads.sum()}`);
 
-// get the data
-reg.absolute( (err, data) => {
-  let _downloads = [];
+}).catch((err) => {
+  console.log(err);
+})
 
-  data.downloads.forEach((item) => {
-    _downloads.push(item.downloads)
-  });
+// With Callback
+reg.total((err, data) => {
+  if (err) {
+    throw new Error(err)
+  }
 
-  console.log( '--> Total Downloads: ' + c.sum() );
+  let downloads = data.downloads.map(dw => {
+    return dw.downloads
+  })
+
+  console.log(`Total Downloads: ${downloads.sum()}`);
+
 })
